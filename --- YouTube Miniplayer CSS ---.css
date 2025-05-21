@@ -1,0 +1,165 @@
+/* --- YouTube Miniplayer CSS --- */
+#yt-miniplayer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px; /* Adjust width as needed */
+    background: var(--dark-green); /* Use your theme color */
+    color: var(--white-text);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    z-index: 9999; /* Ensures it's on top of other content */
+    font-family: sans-serif;
+    cursor: move;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column;
+    overflow: hidden; /* Ensures rounded corners are respected */
+}
+
+#yt-header {
+    padding: 8px 15px; /* Adjust padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically align items */
+    background: var(--light-green); /* Use your theme color */
+    cursor: grab; /* Indicate draggable */
+    font-weight: bold;
+    font-size: 14px;
+    user-select: none; /* Prevent text selection during drag */
+}
+
+#yt-header.dragging {
+    cursor: grabbing;
+}
+
+#yt-close {
+    background: none;
+    color: var(--white-text);
+    border: none;
+    font-size: 18px; /* Slightly larger X */
+    cursor: pointer;
+    padding: 2px 5px; /* Padding for easier click */
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+#yt-close:hover {
+    background-color: rgba(255, 0, 0, 0.7); /* Red hover */
+}
+
+#yt-iframe {
+    width: 100%; /* Make iframe fill its container */
+    height: 180px; /* Adjust height for video */
+    display: block; /* Remove extra space below iframe */
+}
+
+#yt-controls {
+    padding: 10px 15px; /* Adjust padding */
+    display: flex;
+    justify-content: space-around; /* Distribute buttons */
+    align-items: center;
+    gap: 10px; /* Space between controls */
+    background: var(--dark-green);
+}
+
+#yt-controls button {
+    background: var(--muted-gold); /* Your theme color */
+    color: var(--dark-green); /* Text color for buttons */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap; /* Prevent text wrap on buttons */
+}
+
+#yt-controls button:hover {
+    background: var(--light-green);
+    color: var(--white-text);
+}
+
+#yt-controls #yt-volume-slider { /* New volume slider style */
+    width: 80px;
+    height: 4px;
+    background: #ccc;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+#yt-controls #yt-volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--muted-gold);
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+#yt-controls #yt-volume-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--muted-gold);
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+
+/* Hide player when not visible */
+#yt-miniplayer.hidden {
+    display: none;
+}
+
+
+/* Footer Styling */
+footer {
+    background-color: var(--dark-green);
+    color: var(--white-text);
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    border-top: 2px solid var(--light-green);
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    main {
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    #yt-miniplayer { /* Adjust for smaller screens */
+        width: 280px;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    #yt-iframe {
+        height: 157px; /* Maintain aspect ratio (16:9 for 280px width) */
+    }
+
+    #yt-controls button {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+}

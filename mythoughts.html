@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <style>
+        /* Basic Reset & Body Styling */
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333; /* A soft dark color for text */
+            background-color: #f8f8f8; /* Light background for contrast */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures footer is at bottom */
+        }
+
+        /* Dark Green Theme Color */
+        :root {
+            --dark-green: #1e382a;
+            --light-green: #6a8b5e; /* Complementary light green */
+            --muted-gold: #c7b08b; /* Muted gold/cream for accents */
+            --dusty-rose: #a7888b; /* Optional dusty rose accent */
+            --text-color: #333;
+            --white-text: #f0f0f0; /* For text on dark backgrounds */
+        }
+
+        /* Header Styling */
+        header {
+            background-color: var(--dark-green);
+            color: var(--white-text);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--light-green);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            letter-spacing: 2px;
+            font-weight: normal;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Navigation Styling */
+        nav {
+            background-color: var(--light-green);
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; /* For horizontal navigation */
+            justify-content: center;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white-text);
+            font-weight: bold;
+            padding: 8px 15px;
+            display: block;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 5px; /* Slightly rounded corners for buttons */
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active { /* 'active' class for the current page */
+            background-color: var(--muted-gold);
+            color: var(--dark-green);
+        }
+
+        /* Main Content Area */
+        main {
+            padding: 20px;
+            max-width: 800px; /* Slightly narrower for blog content */
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex-grow: 1; /* Allows main content to expand */
+        }
+
+        section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #fdfdfd;
+        }
+
+        section h2 {
+            color: var(--dark-green);
+            font-size: 2em;
+            border-bottom: 2px solid var(--light-green);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* Thought Entry Styling */
+        .thought-entry {
+            margin-bottom: 40px;
+            border-bottom: 1px dashed #ddd; /* Separator between entries */
+            padding-bottom: 30px;
+        }
+
+        .thought-entry:last-of-type {
+            border-bottom: none; /* No border for the last entry */
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .thought-entry h3 {
+            color: var(--dark-green);
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .thought-entry .date {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            display: block; /* Ensures date is on its own line */
+        }
+
+        .thought-entry img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto; /* Center image */
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .thought-entry img:hover {
+            transform: scale(1.01);
+        }
+
+        .thought-entry p {
+            margin-bottom: 1em;
+            text-align: justify; /* Justify text for a more formal look */
+        }
+
+        /* --- NEW/UPDATED CSS for Emojis --- */
+        .emoji-reactions {
+            margin-top: 20px;
+            text-align: center; /* Center the emojis */
+        }
+
+        .emoji-button {
+            background: none;
+            border: 1px solid transparent; /* subtle border */
+            font-size: 1.8em; /* Make emojis bigger */
+            cursor: pointer;
+            margin: 0 5px;
+            padding: 5px 8px; /* Slightly more padding */
+            border-radius: 5px;
+            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+            vertical-align: middle; /* Align emoji with text */
+        }
+
+        .emoji-button:hover {
+            background-color: var(--muted-gold);
+            border-color: var(--light-green);
+            transform: translateY(-2px); /* Slight lift */
+        }
+
+        .emoji-button.reacted { /* Style for when an emoji is "reacted" to */
+            background-color: var(--light-green);
+            border-color: var(--dark-green);
+            color: var(--white-text);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        /* Specific override for emoji text color if parent is dark: */
+        .emoji-button.reacted .emoji-icon {
+            color: var(--white-text); /* Ensure the emoji itself is readable on dark background */
+        }
+
+
+        .emoji-count {
+            font-size: 0.8em;
+            color: #777;
+            margin-left: 3px;
+            vertical-align: middle;
+            font-weight: bold;
+        }
+        /* --- END NEW/UPDATED CSS --- */
+
+        /* Footer Styling */
+        footer {
+            background-color: var(--dark-green);
+            color: var(--white-text);
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 2px solid var(--light-green);
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+
+            main {
+                margin: 10px auto;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Personal Website</h1>
+        <p>Reflections, ideas, and musings on life's journey</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="hobbies.html">Hobbies</a></li>
+            <li><a href="interests.html">Interests</a></li>
+            <li><a href="mythoughts.html" class="active">My Thoughts</a></li>
+            <li><a href="links.html">Links</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>My Thoughts</h2>
+            <p>Welcome to my journal of reflections. Here, I share observations, ideas, and musings that encourage contemplation and growth. These are short essays or personal notes on various topics that resonate with me.</p>
+
+            <div class="thought-entry" data-post-id="full-moon-1">
+                <h3>The Luminous Beauty of a Full Moon</h3>
+                <span class="date">December 15, 2024</span>
+                <img src="C:\Users\ASUS\OneDrive - moe-dl.edu.my\Documents\website\night.jpg" alt="A bright full moon in a night sky">
+                <p>There's something magical about stepping out on a crisp night to see the full moon bathed in its mystical glow. Its gentle light casts long, dancing shadows and transforms the familiar landscape into a realm of dreams. This heavenly body has been a source of inspiration for poets, artists, and dreamers throughout history. Its serene presence reminds me of the cyclical nature of life and the subtle power of reflection. It's a moment to pause, breathe, and appreciate the quiet grandeur of the universe.</p>
+                <div class="emoji-reactions" data-reacted-emoji=""> <button class="emoji-button" data-emoji="❤️"><span class="emoji-icon">❤️</span></button><span class="emoji-count">0</span>
+                    <button class="emoji-button" data-emoji="✨"><span class="emoji-icon">✨</span></button><span class="emoji-count">0</span>
+                    <button class="emoji-button" data-emoji="🦉"><span class="emoji-icon">🦉</span></button><span class="emoji-count">0</span>
+                </div>
+            </div>
+
+            <div class="thought-entry" data-post-id="letter-writing-2">
+                <h3>The Lost Art of Letter Writing</h3>
+                <span class="date">October 20, 2024</span>
+                <p>In this digital age of instant messages and emails, there's something profound about the deliberate act of handwritten letter writing. The slow unfolding of thoughts onto paper, the tangible presence of ink, and the anticipation of waiting for a reply all contribute to a unique form of connection. It's a practice that encourages careful thought, reflection, and a deeper engagement with the recipient. Perhaps, like a vintage photograph, it captures a moment in time with a personal touch that digital communication often lacks. It's more than just communication; it's a piece of art, a memory.</p>
+                <div class="emoji-reactions" data-reacted-emoji="">
+                    <button class="emoji-button" data-emoji="💌"><span class="emoji-icon">💌</span></button><span class="emoji-count">0</span>
+                    <button class="emoji-button" data-emoji="🖋️"><span class="emoji-icon">🖋️</span></button><span class="emoji-count">0</span>
+                    <button class="emoji-button" data-emoji="🕰️"><span class="emoji-icon">🕰️</span></button><span class="emoji-count">0</span>
+                </div>
+            </div>
+
+            <div class="thought-entry" data-post-id="butterflies-3">
+                <h3>Butterflies: Nature's Transformative Lesson</h3>
+                <span class="date">September 5, 2024</span>
+                <img src="C:\Users\ASUS\OneDrive - moe-dl.edu.my\Documents\website\growth.jpg" alt="Butterfly preparing for flight--a new start">
+                <p>The transformation of a butterfly from a humble caterpillar to a winged marvel is one of nature's most enchanting spectacles. It's a powerful metaphor for personal growth, resilience, and the beauty that emerges from periods of change. Butterflies remind us that even the most profound transformations happen through patience and quiet development. Each delicate flutter of their wings is a testament to the journey, encouraging us to embrace our own metamorphoses with grace and an open heart. They teach us that beauty often unfolds from within, patiently, quietly, and completely.</p>
+                <div class="emoji-reactions" data-reacted-emoji="">
+                    <button class="emoji-button" data-emoji="🦋"><span class="emoji-icon">🦋</span></button><span class="emoji-count">0</span>
+                    <button class="emoji-button" data-emoji="🌱"><span class="emoji-icon">🌱</span></button><span class="emoji-count">0</span>
+                    <button class="emoji-button" data-emoji="🌟"><span class="emoji-icon">🌟</span></button><span class="emoji-count">0</span>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 IqueNewbie. All Rights Reserved.</p>
+        <p>Recommended Browser: Chrome, Firefox, Edge | Best viewed at 1920x1080 resolution</p>
+        <p>Last Updated: May 21, 2025</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const thoughtEntries = document.querySelectorAll('.thought-entry');
+
+            thoughtEntries.forEach(entry => {
+                const reactionsContainer = entry.querySelector('.emoji-reactions');
+                const emojiButtons = reactionsContainer.querySelectorAll('.emoji-button');
+                // Store the currently reacted emoji for THIS post, specific to the user's current session/browser
+                let userReaction = reactionsContainer.dataset.reactedEmoji || ''; // Get initial state if any (though none for now)
+
+                // Initialize counts from local storage if desired (still non-persistent for multi-user)
+                // This would be for *this browser* to remember its own count
+                // We'll skip this for simplicity given the "account" constraint, as true persistence requires a backend.
+                // For now, counts reset with every page load.
+
+                emojiButtons.forEach(button => {
+                    // Place the emoji character inside a span for better styling control (especially color)
+                    button.innerHTML = `<span class="emoji-icon">${button.dataset.emoji}</span>`;
+
+                    button.addEventListener('click', () => {
+                        const clickedEmoji = button.dataset.emoji;
+                        const countSpan = button.nextElementSibling;
+                        let currentCount = parseInt(countSpan.textContent);
+
+                        // If the user clicked the emoji they already reacted with (to undo)
+                        if (userReaction === clickedEmoji) {
+                            countSpan.textContent = currentCount - 1; // Decrement count
+                            button.classList.remove('reacted'); // Remove active style
+                            userReaction = ''; // Clear user's reaction for this post
+                            reactionsContainer.dataset.reactedEmoji = ''; // Update parent data attribute
+                        }
+                        // If the user clicked a NEW emoji (or hasn't reacted yet)
+                        else {
+                            // Find the previous reaction button (if any) and undo its reaction
+                            if (userReaction) {
+                                const prevButton = reactionsContainer.querySelector(`.emoji-button[data-emoji="${userReaction}"]`);
+                                if (prevButton) {
+                                    prevButton.nextElementSibling.textContent = parseInt(prevButton.nextElementSibling.textContent) - 1;
+                                    prevButton.classList.remove('reacted');
+                                }
+                            }
+
+                            // Apply new reaction
+                            countSpan.textContent = currentCount + 1; // Increment count
+                            button.classList.add('reacted'); // Add active style
+                            userReaction = clickedEmoji; // Set new user's reaction for this post
+                            reactionsContainer.dataset.reactedEmoji = clickedEmoji; // Update parent data attribute
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+<div id="yt-miniplayer">
+    <div id="yt-header">
+        🎵 Now Playing
+        <button id="yt-close">✖</button>
+    </div>
+    <iframe
+        id="yt-iframe"
+        width="300"
+        height="170"
+        src="https://www.youtube.com/embed/l3G_D2n_P_8?enablejsapi=1&autoplay=1&controls=0&loop=1&playlist=l3G_D2n_P_8"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+    ></iframe>
+    <div id="yt-controls">
+        <button id="yt-play-pause">▶️ Play</button>
+        <button id="yt-mute">🔊 Mute</button>
+        <input type="range" id="yt-volume-slider" min="0" max="100" value="50">
+    </div>
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+    const player = document.getElementById('yt-miniplayer');
+    const header = document.getElementById('yt-header');
+    const closeBtn = document.getElementById('yt-close');
+    const playPauseBtn = document.getElementById('yt-play-pause');
+    const muteBtn = document.getElementById('yt-mute');
+    const volumeSlider = document.getElementById('yt-volume-slider');
+    const ytIframe = document.getElementById('yt-iframe');
+
+    let isDragging = false, offsetX, offsetY;
+    let ytPlayer; // Will hold the YT.Player object
+
+    const PLAYER_STATE_KEY_YT = 'ytMiniPlayerState';
+
+    // --- Persistence (Local Storage) ---
+    function savePlayerStateYT() {
+        if (!ytPlayer) return; // Ensure player is initialized
+        const state = {
+            isPlaying: ytPlayer.getPlayerState() === YT.PlayerState.PLAYING,
+            isMuted: ytPlayer.isMuted(),
+            volume: ytPlayer.getVolume(),
+            isVisible: !player.classList.contains('hidden'),
+            left: player.style.left,
+            top: player.style.top,
+            right: player.style.right,
+            bottom: player.style.bottom
+        };
+        localStorage.setItem(PLAYER_STATE_KEY_YT, JSON.stringify(state));
+    }
+
+    function loadPlayerStateYT() {
+        const savedState = localStorage.getItem(PLAYER_STATE_KEY_YT);
+        if (savedState) {
+            const state = JSON.parse(savedState);
+
+            // Set position
+            if (state.left && state.top) {
+                player.style.left = state.left;
+                player.style.top = state.top;
+                player.style.right = 'auto'; // Clear right/bottom if left/top set
+                player.style.bottom = 'auto';
+            } else if (state.right && state.bottom) {
+                 player.style.right = state.right;
+                 player.style.bottom = state.bottom;
+                 player.style.left = 'auto';
+                 player.style.top = 'auto';
+            }
+
+            if (!state.isVisible) {
+                player.classList.add('hidden');
+            } else {
+                player.classList.remove('hidden');
+            }
+
+            // Volume and mute will be applied in onPlayerReady after API is ready
+            // Playback state is also handled there or in onPlayerStateChange
+        } else {
+            // Default initial position if no state is saved
+            player.style.bottom = '20px';
+            player.style.right = '20px';
+            player.classList.remove('hidden'); // Ensure visible by default
+        }
+    }
+
+    // --- Dragging Logic ---
+    header.addEventListener('mousedown', (e) => {
+        // Prevent dragging if clicking on the close button
+        if (e.target.closest('#yt-close') || e.target.closest('#yt-controls')) {
+            return;
+        }
+        isDragging = true;
+        header.classList.add('dragging'); // Add dragging class to header for cursor change
+        player.classList.add('dragging'); // Add dragging class to container for opacity
+        offsetX = e.clientX - player.getBoundingClientRect().left; // Use getBoundingClientRect for accurate position
+        offsetY = e.clientY - player.getBoundingClientRect().top;
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            header.classList.remove('dragging');
+            player.classList.remove('dragging');
+            savePlayerStateYT(); // Save position after drag ends
+        }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault(); // Prevent text selection etc.
+
+        // Constrain within viewport
+        let newLeft = e.clientX - offsetX;
+        let newTop = e.clientY - offsetY;
+
+        const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const playerWidth = player.offsetWidth;
+        const playerHeight = player.offsetHeight;
+
+        newLeft = Math.max(0, Math.min(newLeft, viewportWidth - playerWidth));
+        newTop = Math.max(0, Math.min(newTop, viewportHeight - playerHeight));
+
+        player.style.left = newLeft + 'px';
+        player.style.top = newTop + 'px';
+        // Clear right/bottom once dragged
+        player.style.right = 'auto';
+        player.style.bottom = 'auto';
+    });
+
+    // --- Close Button ---
+    closeBtn.addEventListener('click', () => {
+        if (ytPlayer) {
+            ytPlayer.pauseVideo(); // Pause video when closing
+        }
+        player.classList.add('hidden');
+        savePlayerStateYT(); // Save state as hidden
+    });
+
+    // --- YouTube API Loading and Initialization ---
+    // This function is called automatically by the YouTube IFrame Player API
+    function onYouTubeIframeAPIReady() {
+        // Check if iframe is actually rendered and available
+        if (!ytIframe) {
+            console.error("YouTube iframe element not found!");
+            return;
+        }
+
+        ytPlayer = new YT.Player('yt-iframe', {
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            },
+            playerVars: {
+                'autoplay': 1, // Attempt to autoplay
+                'controls': 0, // Hide YouTube's native controls
+                'loop': 1, // Loop the video
+                'playlist': 'l3G_D2n_P_8', // Crucial for looping a single video ID
+                'modestbranding': 1, // Reduces YouTube logo
+                'rel': 0 // Prevents related videos at the end
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        const savedState = localStorage.getItem(PLAYER_STATE_KEY_YT);
+        let state;
+        if (savedState) {
+            state = JSON.parse(savedState);
+        }
+
+        // Apply saved volume/mute or default
+        if (state && state.volume !== undefined) {
+            ytPlayer.setVolume(state.volume);
+            volumeSlider.value = state.volume;
+        } else {
+            ytPlayer.setVolume(50); // Default volume to 50%
+            volumeSlider.value = 50;
+        }
+
+        if (state && state.isMuted !== undefined) {
+            if (state.isMuted) {
+                ytPlayer.mute();
+                muteBtn.textContent = '🔇 Unmute';
+            } else {
+                ytPlayer.unMute();
+                muteBtn.textContent = '🔊 Mute';
+            }
+        } else {
+            ytPlayer.unMute(); // Default to unmuted
+            muteBtn.textContent = '🔊 Mute';
+        }
+
+        // Attempt to play based on saved state, but browser might block autoplay with sound
+        if (state && state.isPlaying) {
+            // Attempt to play. Browser might prevent if no user interaction.
+            event.target.playVideo().catch(e => console.log("YouTube autoplay blocked:", e));
+            playPauseBtn.textContent = '⏸️ Pause';
+        } else {
+            event.target.pauseVideo();
+            playPauseBtn.textContent = '▶️ Play';
+        }
+
+        savePlayerStateYT(); // Save the initial state applied
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+            playPauseBtn.textContent = '⏸️ Pause';
+        } else {
+            playPauseBtn.textContent = '▶️ Play';
+        }
+        savePlayerStateYT();
+    }
+
+    // --- Miniplayer Controls ---
+    playPauseBtn.addEventListener('click', () => {
+        if (!ytPlayer) return;
+        const playerState = ytPlayer.getPlayerState();
+        if (playerState === YT.PlayerState.PLAYING || playerState === YT.PlayerState.BUFFERING) {
+            ytPlayer.pauseVideo();
+        } else {
+            ytPlayer.playVideo().catch(e => console.log("YouTube play blocked:", e));
+        }
+    });
+
+    muteBtn.addEventListener('click', () => {
+        if (!ytPlayer) return;
+        if (ytPlayer.isMuted()) {
+            ytPlayer.unMute();
+            muteBtn.textContent = '🔊 Mute';
+        } else {
+            ytPlayer.mute();
+            muteBtn.textContent = '🔇 Unmute';
+        }
+    });
+
+    volumeSlider.addEventListener('input', () => {
+        if (!ytPlayer) return;
+        const volume = parseInt(volumeSlider.value);
+        ytPlayer.setVolume(volume);
+        if (volume > 0 && ytPlayer.isMuted()) {
+            ytPlayer.unMute(); // Unmute if volume is increased from 0 while muted
+            muteBtn.textContent = '🔊 Mute';
+        } else if (volume === 0 && !ytPlayer.isMuted()) {
+            ytPlayer.mute(); // Mute if volume is set to 0
+            muteBtn.textContent = '🔇 Unmute';
+        }
+    });
+
+    // Load initial player state on page load (position and visibility)
+    document.addEventListener('DOMContentLoaded', loadPlayerStateYT);
+
+    // No need to dynamically append YouTube API script if it's already a script tag in HTML
+    // You have src="https://www.youtube.com/iframe_api" directly in the HTML now, which is fine.
+    // If you were using the old code that dynamically appended, you'd keep that.
+</script>
+</body>
+</html>

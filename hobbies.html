@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>My Personal Website - Hobbies</title>
+
+    <style>
+        /* Basic Reset & Body Styling */
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333; /* A soft dark color for text */
+            background-color: #f8f8f8; /* Light background for contrast */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures footer is at bottom */
+        }
+
+        /* Dark Green Theme Color */
+        :root {
+            --dark-green: #1e382a;
+            --light-green: #6a8b5e; /* Complementary light green */
+            --muted-gold: #c7b08b; /* Muted gold/cream for accents */
+            --dusty-rose: #a7888b; /* Optional dusty rose accent */
+            --text-color: #333;
+            --white-text: #f0f0f0; /* For text on dark backgrounds */
+        }
+
+        /* Header Styling */
+        header {
+            background-color: var(--dark-green);
+            color: var(--white-text);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--light-green);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            letter-spacing: 2px;
+            font-weight: normal;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Navigation Styling */
+        nav {
+            background-color: var(--light-green);
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; /* For horizontal navigation */
+            justify-content: center;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white-text);
+            font-weight: bold;
+            padding: 8px 15px;
+            display: block;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 5px; /* Slightly rounded corners for buttons */
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active { /* 'active' class for the current page */
+            background-color: var(--muted-gold);
+            color: var(--dark-green);
+        }
+
+        /* Main Content Area */
+        main {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex-grow: 1; /* Allows main content to expand */
+        }
+
+        section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #fdfdfd;
+        }
+
+        section h2 {
+            color: var(--dark-green);
+            font-size: 2em;
+            border-bottom: 2px solid var(--light-green);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* Hobbies Grid Styling (from the example image) */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+            gap: 25px; /* Space between hobby cards */
+            margin-top: 20px;
+        }
+
+        .hobby-card {
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            overflow: hidden; /* Ensures image doesn't break border-radius */
+            display: flex; /* For flexible content inside card */
+            flex-direction: column;
+            justify-content: space-between; /* Pushes content to top and bottom */
+        }
+
+        .hobby-card img {
+            max-width: 100%;
+            height: 180px; /* Fixed height for image consistency */
+            object-fit: cover; /* Ensures image fills the space nicely */
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            transition: transform 0.3s ease;
+        }
+
+        .hobby-card img:hover {
+            transform: scale(1.03);
+        }
+
+        .hobby-card h3 {
+            color: var(--dark-green);
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .hobby-card p {
+            font-size: 0.95em;
+            color: #555;
+            flex-grow: 1; /* Allows paragraph to take available height */
+            text-align: left; /* Align text left within the card */
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: var(--dark-green);
+            color: var(--white-text);
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 2px solid var(--light-green);
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+
+            main {
+                margin: 10px auto;
+                padding: 15px;
+            }
+
+            .hobbies-grid {
+                grid-template-columns: 1fr; /* Stack hobby cards on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Personal Website</h1>
+        <p><i>Activities that bring me joy and fulfillment</i></p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="hobbies.html" class="active">Hobbies</a></li>
+            <li><a href="interests.html">Interests</a></li>
+            <li><a href="mythoughts.html">My Thoughts</a></li>
+            <li><a href="links.html">Links</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>My Hobbies</h2>
+            <p>Hobbies are an essential part of a balanced life. They provide relaxation, joy, and opportunities for personal growth. Here are some activities that I'm passionate about.</p>
+
+            <div class="hobbies-grid">
+                <div class="hobby-card">
+                    <img src="C:\Users\ASUS\OneDrive - moe-dl.edu.my\Documents\website\sunset.jpg" alt="Close-up of camera lens or natural detail">
+                    <h3>Nature Photography</h3>
+                    <p>Capturing the beauty of landscapes, wildlife, and botanical elements through photography. I particularly enjoy capturing the sunset.</p>
+                </div>
+
+                <div class="hobby-card">
+                    <img src="C:\Users\ASUS\OneDrive - moe-dl.edu.my\Documents\website\vintage.jpg" alt="Vintage">
+                    <h3>Vintage-Inspired Art</h3>
+                    <p>I enjoy browsing vintage arts in all kinds of platforms.</p>
+                </div>
+
+                <div class="hobby-card">
+                    <img src="C:\Users\ASUS\OneDrive - moe-dl.edu.my\Documents\website\Quran.jpg" alt="Open Quran">
+                    <h3>Reading Quran</h3>
+                    <p>I particularly enjoy reading the Quran, then exploring the meanings and translations in English and Malay through varied sources. One of the perks as a library student is that you know how to find reliable sources!</p>
+                </div>
+
+                <div class="hobby-card">
+                    <img src="C:\Users\ASUS\OneDrive - moe-dl.edu.my\Documents\website\music.jpg" alt="Music notes">
+                    <h3>Appreciating the art of music</h3>
+                    <p>Music calms the nerve, the various notees and sounds emitted soothe the heart. It also helps build peaceful ambience for my study sessions.</p>
+                </div>
+
+                <div class="hobby-card">
+                    <img src="C:\Users\ASUS\OneDrive - moe-dl.edu.my\Documents\website\antique.jpg" alt="Understanding Antiques">
+                    <h3>Antique Learning</h3>
+                    <p>Discovering unique vintage items, from old books and postcards to antique cash registry, each with its own story and history.</p>
+                </div>
+
+                <div class="hobby-card">
+                    <img src="C:\Users\ASUS\OneDrive - moe-dl.edu.my\Documents\website\walk.jpg" alt="The right path">
+                    <h3>Walking as a form of exercise</h3>
+                    <p>Taking long walks everyday, makes me healthy, and also beneficial for my hereafter.</p>
+                </div>
+
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 IqueNewbie. All Rights Reserved.</p>
+        <p>Recommended Browser: Chrome, Firefox, Edge | Best viewed at 1920x1080 resolution</p>
+        <p>Last Updated: May 21, 2025</p>
+    </footer>
+<div id="yt-miniplayer">
+    <div id="yt-header">
+        🎵 Now Playing
+        <button id="yt-close">✖</button>
+    </div>
+    <iframe
+        id="yt-iframe"
+        width="300"
+        height="170"
+        src="https://www.youtube.com/embed/l3G_D2n_P_8?enablejsapi=1&autoplay=1&controls=0&loop=1&playlist=l3G_D2n_P_8"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+    ></iframe>
+    <div id="yt-controls">
+        <button id="yt-play-pause">▶️ Play</button>
+        <button id="yt-mute">🔊 Mute</button>
+        <input type="range" id="yt-volume-slider" min="0" max="100" value="50">
+    </div>
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+    const player = document.getElementById('yt-miniplayer');
+    const header = document.getElementById('yt-header');
+    const closeBtn = document.getElementById('yt-close');
+    const playPauseBtn = document.getElementById('yt-play-pause');
+    const muteBtn = document.getElementById('yt-mute');
+    const volumeSlider = document.getElementById('yt-volume-slider');
+    const ytIframe = document.getElementById('yt-iframe');
+
+    let isDragging = false, offsetX, offsetY;
+    let ytPlayer; // Will hold the YT.Player object
+
+    const PLAYER_STATE_KEY_YT = 'ytMiniPlayerState';
+
+    // --- Persistence (Local Storage) ---
+    function savePlayerStateYT() {
+        if (!ytPlayer) return; // Ensure player is initialized
+        const state = {
+            isPlaying: ytPlayer.getPlayerState() === YT.PlayerState.PLAYING,
+            isMuted: ytPlayer.isMuted(),
+            volume: ytPlayer.getVolume(),
+            isVisible: !player.classList.contains('hidden'),
+            left: player.style.left,
+            top: player.style.top,
+            right: player.style.right,
+            bottom: player.style.bottom
+        };
+        localStorage.setItem(PLAYER_STATE_KEY_YT, JSON.stringify(state));
+    }
+
+    function loadPlayerStateYT() {
+        const savedState = localStorage.getItem(PLAYER_STATE_KEY_YT);
+        if (savedState) {
+            const state = JSON.parse(savedState);
+
+            // Set position
+            if (state.left && state.top) {
+                player.style.left = state.left;
+                player.style.top = state.top;
+                player.style.right = 'auto'; // Clear right/bottom if left/top set
+                player.style.bottom = 'auto';
+            } else if (state.right && state.bottom) {
+                 player.style.right = state.right;
+                 player.style.bottom = state.bottom;
+                 player.style.left = 'auto';
+                 player.style.top = 'auto';
+            }
+
+            if (!state.isVisible) {
+                player.classList.add('hidden');
+            } else {
+                player.classList.remove('hidden');
+            }
+
+            // Volume and mute will be applied in onPlayerReady after API is ready
+            // Playback state is also handled there or in onPlayerStateChange
+        } else {
+            // Default initial position if no state is saved
+            player.style.bottom = '20px';
+            player.style.right = '20px';
+            player.classList.remove('hidden'); // Ensure visible by default
+        }
+    }
+
+    // --- Dragging Logic ---
+    header.addEventListener('mousedown', (e) => {
+        // Prevent dragging if clicking on the close button
+        if (e.target.closest('#yt-close') || e.target.closest('#yt-controls')) {
+            return;
+        }
+        isDragging = true;
+        header.classList.add('dragging'); // Add dragging class to header for cursor change
+        player.classList.add('dragging'); // Add dragging class to container for opacity
+        offsetX = e.clientX - player.getBoundingClientRect().left; // Use getBoundingClientRect for accurate position
+        offsetY = e.clientY - player.getBoundingClientRect().top;
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            header.classList.remove('dragging');
+            player.classList.remove('dragging');
+            savePlayerStateYT(); // Save position after drag ends
+        }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault(); // Prevent text selection etc.
+
+        // Constrain within viewport
+        let newLeft = e.clientX - offsetX;
+        let newTop = e.clientY - offsetY;
+
+        const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const playerWidth = player.offsetWidth;
+        const playerHeight = player.offsetHeight;
+
+        newLeft = Math.max(0, Math.min(newLeft, viewportWidth - playerWidth));
+        newTop = Math.max(0, Math.min(newTop, viewportHeight - playerHeight));
+
+        player.style.left = newLeft + 'px';
+        player.style.top = newTop + 'px';
+        // Clear right/bottom once dragged
+        player.style.right = 'auto';
+        player.style.bottom = 'auto';
+    });
+
+    // --- Close Button ---
+    closeBtn.addEventListener('click', () => {
+        if (ytPlayer) {
+            ytPlayer.pauseVideo(); // Pause video when closing
+        }
+        player.classList.add('hidden');
+        savePlayerStateYT(); // Save state as hidden
+    });
+
+    // --- YouTube API Loading and Initialization ---
+    // This function is called automatically by the YouTube IFrame Player API
+    function onYouTubeIframeAPIReady() {
+        // Check if iframe is actually rendered and available
+        if (!ytIframe) {
+            console.error("YouTube iframe element not found!");
+            return;
+        }
+
+        ytPlayer = new YT.Player('yt-iframe', {
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            },
+            playerVars: {
+                'autoplay': 1, // Attempt to autoplay
+                'controls': 0, // Hide YouTube's native controls
+                'loop': 1, // Loop the video
+                'playlist': 'l3G_D2n_P_8', // Crucial for looping a single video ID
+                'modestbranding': 1, // Reduces YouTube logo
+                'rel': 0 // Prevents related videos at the end
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        const savedState = localStorage.getItem(PLAYER_STATE_KEY_YT);
+        let state;
+        if (savedState) {
+            state = JSON.parse(savedState);
+        }
+
+        // Apply saved volume/mute or default
+        if (state && state.volume !== undefined) {
+            ytPlayer.setVolume(state.volume);
+            volumeSlider.value = state.volume;
+        } else {
+            ytPlayer.setVolume(50); // Default volume to 50%
+            volumeSlider.value = 50;
+        }
+
+        if (state && state.isMuted !== undefined) {
+            if (state.isMuted) {
+                ytPlayer.mute();
+                muteBtn.textContent = '🔇 Unmute';
+            } else {
+                ytPlayer.unMute();
+                muteBtn.textContent = '🔊 Mute';
+            }
+        } else {
+            ytPlayer.unMute(); // Default to unmuted
+            muteBtn.textContent = '🔊 Mute';
+        }
+
+        // Attempt to play based on saved state, but browser might block autoplay with sound
+        if (state && state.isPlaying) {
+            // Attempt to play. Browser might prevent if no user interaction.
+            event.target.playVideo().catch(e => console.log("YouTube autoplay blocked:", e));
+            playPauseBtn.textContent = '⏸️ Pause';
+        } else {
+            event.target.pauseVideo();
+            playPauseBtn.textContent = '▶️ Play';
+        }
+
+        savePlayerStateYT(); // Save the initial state applied
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+            playPauseBtn.textContent = '⏸️ Pause';
+        } else {
+            playPauseBtn.textContent = '▶️ Play';
+        }
+        savePlayerStateYT();
+    }
+
+    // --- Miniplayer Controls ---
+    playPauseBtn.addEventListener('click', () => {
+        if (!ytPlayer) return;
+        const playerState = ytPlayer.getPlayerState();
+        if (playerState === YT.PlayerState.PLAYING || playerState === YT.PlayerState.BUFFERING) {
+            ytPlayer.pauseVideo();
+        } else {
+            ytPlayer.playVideo().catch(e => console.log("YouTube play blocked:", e));
+        }
+    });
+
+    muteBtn.addEventListener('click', () => {
+        if (!ytPlayer) return;
+        if (ytPlayer.isMuted()) {
+            ytPlayer.unMute();
+            muteBtn.textContent = '🔊 Mute';
+        } else {
+            ytPlayer.mute();
+            muteBtn.textContent = '🔇 Unmute';
+        }
+    });
+
+    volumeSlider.addEventListener('input', () => {
+        if (!ytPlayer) return;
+        const volume = parseInt(volumeSlider.value);
+        ytPlayer.setVolume(volume);
+        if (volume > 0 && ytPlayer.isMuted()) {
+            ytPlayer.unMute(); // Unmute if volume is increased from 0 while muted
+            muteBtn.textContent = '🔊 Mute';
+        } else if (volume === 0 && !ytPlayer.isMuted()) {
+            ytPlayer.mute(); // Mute if volume is set to 0
+            muteBtn.textContent = '🔇 Unmute';
+        }
+    });
+
+    // Load initial player state on page load (position and visibility)
+    document.addEventListener('DOMContentLoaded', loadPlayerStateYT);
+
+    // No need to dynamically append YouTube API script if it's already a script tag in HTML
+    // You have src="https://www.youtube.com/iframe_api" directly in the HTML now, which is fine.
+    // If you were using the old code that dynamically appended, you'd keep that.
+</script>
+</body>
+</html>

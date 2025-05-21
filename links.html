@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Personal Website - Links</title>
+
+    <style>
+        /* Basic Reset & Body Styling */
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333; /* A soft dark color for text */
+            background-color: #f8f8f8; /* Light background for contrast */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures footer is at bottom */
+        }
+
+        /* Dark Green Theme Color */
+        :root {
+            --dark-green: #1e382a;
+            --light-green: #6a8b5e; /* Complementary light green */
+            --muted-gold: #c7b08b; /* Muted gold/cream for accents */
+            --dusty-rose: #a7888b; /* Optional dusty rose accent */
+            --text-color: #333;
+            --white-text: #f0f0f0; /* For text on dark backgrounds */
+        }
+
+        /* Header Styling */
+        header {
+            background-color: var(--dark-green);
+            color: var(--white-text);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--light-green);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            letter-spacing: 2px;
+            font-weight: normal;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Navigation Styling */
+        nav {
+            background-color: var(--light-green);
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; /* For horizontal navigation */
+            justify-content: center;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white-text);
+            font-weight: bold;
+            padding: 8px 15px;
+            display: block;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 5px; /* Slightly rounded corners for buttons */
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active { /* 'active' class for the current page */
+            background-color: var(--muted-gold);
+            color: var(--dark-green);
+        }
+
+        /* Main Content Area */
+        main {
+            padding: 20px;
+            max-width: 800px; /* Slightly narrower for links table */
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex-grow: 1; /* Allows main content to expand */
+        }
+
+        section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #fdfdfd;
+        }
+
+        section h2 {
+            color: var(--dark-green);
+            font-size: 2em;
+            border-bottom: 2px solid var(--light-green);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* Links Table Styling */
+        .links-table-category {
+            margin-bottom: 30px;
+        }
+
+        .links-table-category h3 {
+            color: var(--dark-green);
+            font-size: 1.6em;
+            border-bottom: 1px dashed var(--muted-gold);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .links-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            background-color: #fff;
+        }
+
+        .links-table th,
+        .links-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .links-table th {
+            background-color: var(--light-green); /* Header for columns */
+            color: var(--white-text);
+            width: 30%; /* Adjust width for the link name */
+            font-weight: normal;
+        }
+
+        .links-table td:first-child { /* Specific styling for the link name column */
+            font-weight: bold;
+        }
+
+        .links-table td a {
+            color: var(--dark-green); /* Link color */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .links-table td a:hover {
+            color: var(--muted-gold); /* Hover color for links */
+            text-decoration: underline;
+        }
+
+        .links-table tr:nth-child(even) {
+            background-color: #fcfcfc; /* Zebra striping */
+        }
+
+        .links-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: var(--dark-green);
+            color: var(--white-text);
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 2px solid var(--light-green);
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+
+            main {
+                margin: 10px auto;
+                padding: 15px;
+            }
+
+            .links-table th,
+            .links-table td {
+                display: block; /* Stack table headers and data */
+                width: 100%;
+                text-align: left; /* Keep text left-aligned even when stacked */
+                padding: 8px 10px;
+            }
+
+            .links-table th {
+                background-color: var(--light-green);
+                color: var(--white-text);
+            }
+
+            .links-table td:first-child {
+                background-color: #eee; /* Slight distinction for the link name when stacked */
+            }
+
+            .links-table tr:nth-child(even) td {
+                background-color: #f2f2f2;
+            }
+/* Basic Reset & Body Styling */
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    color: #333; /* A soft dark color for text */
+    background-color: #f8f8f8; /* Light background for contrast */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures footer is at bottom */
+}
+
+/* Dark Green Theme Color */
+:root {
+    --dark-green: #1e382a;
+    --light-green: #6a8b5e; /* Complementary light green */
+    --muted-gold: #c7b08b; /* Muted gold/cream for accents */
+    --dusty-rose: #a7888b; /* Optional dusty rose accent */
+    --text-color: #333;
+    --white-text: #f0f0f0; /* For text on dark backgrounds */
+}
+
+/* Header Styling */
+header {
+    background-color: var(--dark-green);
+    color: var(--white-text);
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 2px solid var(--light-green);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.8em;
+    letter-spacing: 2px;
+    font-weight: normal;
+}
+
+header p {
+    margin: 5px 0 0;
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+/* Navigation Styling */
+nav {
+    background-color: var(--light-green);
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* For horizontal navigation */
+    justify-content: center;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--white-text);
+    font-weight: bold;
+    padding: 8px 15px;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px; /* Slightly rounded corners for buttons */
+}
+
+nav ul li a:hover,
+nav ul li a.active { /* 'active' class for the current page */
+    background-color: var(--muted-gold);
+    color: var(--dark-green);
+}
+
+/* Main Content Area */
+main {
+    padding: 20px;
+    max-width: 800px; /* Slightly narrower for content */
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    flex-grow: 1; /* Allows main content to expand */
+}
+
+section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #fdfdfd;
+}
+
+section h2 {
+    color: var(--dark-green);
+    font-size: 2em;
+    border-bottom: 2px solid var(--light-green);
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Common Paragraph Styling (if not already there) */
+main p {
+    margin-bottom: 1em;
+    text-align: justify; /* Ensure general paragraphs are justified if desired */
+}
+
+
+/* Thought Entry Styling (from mythoughts.html, useful if you're consolidating CSS) */
+.thought-entry {
+    margin-bottom: 40px;
+    border-bottom: 1px dashed #ddd; /* Separator between entries */
+    padding-bottom: 30px;
+}
+
+.thought-entry:last-of-type {
+    border-bottom: none; /* No border for the last entry */
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.thought-entry h3 {
+    color: var(--dark-green);
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+
+.thought-entry .date {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.thought-entry img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.thought-entry img:hover {
+    transform: scale(1.01);
+}
+
+/* Emoji Reaction Styling (from mythoughts.html) */
+.emoji-reactions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.emoji-button {
+    background: none;
+    border: 1px solid transparent;
+    font-size: 1.8em;
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+    vertical-align: middle;
+}
+
+.emoji-button:hover {
+    background-color: var(--muted-gold);
+    border-color: var(--light-green);
+    transform: translateY(-2px);
+}
+
+.emoji-button.reacted {
+    background-color: var(--light-green);
+    border-color: var(--dark-green);
+    color: var(--white-text);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.emoji-button.reacted .emoji-icon {
+    color: var(--white-text);
+}
+
+.emoji-count {
+    font-size: 0.8em;
+    color: #777;
+    margin-left: 3px;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+
+/* === NEW CSS for links.html specific elements === */
+.link-item {
+    background-color: #fdfdfd;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.link-item:hover {
+    transform: translateY(-3px); /* Subtle lift on hover */
+}
+
+.link-item h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.6em;
+    color: var(--dark-green); /* Default color for link titles */
+}
+
+/* Style for the link title itself */
+.link-item h3 a {
+    text-decoration: none; /* Removes underline from the title link */
+    color: var(--dark-green); /* Your chosen dark green color */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.link-item h3 a:hover {
+    color: var(--light-green); /* Changes color on hover */
+    text-decoration: underline; /* Adds underline back on hover for emphasis */
+}
+
+/* Style for the optional "Visit Website" button-like link */
+.external-link {
+    display: inline-block; /* Makes it behave like a block but allows other content on line */
+    background-color: var(--muted-gold); /* A button-like background */
+    color: var(--dark-green); /* Text color for the button */
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none; /* Removes underline */
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-top: 10px; /* Space above the button */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.external-link:hover {
+    background-color: var(--light-green);
+    color: var(--white-text);
+}
+
+
+/* Footer Styling */
+footer {
+    background-color: var(--dark-green);
+    color: var(--white-text);
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    border-top: 2px solid var(--light-green);
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    main {
+        margin: 10px auto;
+        padding: 15px;
+    }
+}
+
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Personal Website</h1>
+        <p>External and internally connected resources</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="hobbies.html">Hobbies</a></li>
+            <li><a href="interests.html">Interests</a></li>
+            <li><a href="mythoughts.html">My Thoughts</a></li>
+            <li><a href="links.html" class="active">Links</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Useful Links</h2>
+            <p>Here's a collection of external resources and connections that I find valuable, inspiring, and informative. These sources cover various interests and this may pique your curiosity as well as it does to me.</p>
+
+            <div class="links-table-category">
+                <h3>Nature & Wildlife</h3>
+                <table class="links-table">
+                    <thead>
+                        <tr>
+                            <th>Website</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="https://www.nationalgeographic.com/" target="_blank">National Geographic</a></td>
+                            <td>Explore amazing nature photography, articles, and scientific discoveries.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.audubon.org/" target="_blank">National Audubon Society</a></td>
+                            <td>Conservation organization dedicated to protecting birds and their habitats.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.inaturalist.org/" target="_blank">iNaturalist</a></td>
+                            <td>A social network of naturalists, scientists, and citizens to map and share observations of biodiversity.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.allaboutbirds.org/" target="_blank">Cornell Lab of Ornithology</a></td>
+                            <td>Comprehensive resource for bird identification, calls, and behavior.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="links-table-category">
+                <h3>Art & Design Resources</h3>
+                <table class="links-table">
+                    <thead>
+                        <tr>
+                            <th>Website</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="https://www.metmuseum.org/" target="_blank">The Metropolitan Museum of Art</a></td>
+                            <td>One of the world's largest and finest art museums, offering a vast collection.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.vam.ac.uk/" target="_blank">Victoria and Albert Museum</a></td>
+                            <td>The world's leading museum of art, design, and performance, home to 5,000 years of human creativity.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.smithsonianmag.com/arts-culture/" target="_blank">Smithsonian Magazine (Arts & Culture)</a></td>
+                            <td>Explores art, history, and culture through captivating stories and images.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.guggenheim.org/" target="_blank">Solomon R. Guggenheim Museum</a></td>
+                            <td>A modern art museum known for its unique architecture and impressive collections.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="links-table-category">
+                <h3>Literature & Poetry</h3>
+                <table class="links-table">
+                    <thead>
+                        <tr>
+                            <th>Website</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="https://www.gutenberg.org/" target="_blank">Project Gutenberg</a></td>
+                            <td>A library of over 60,000 free eBooks, including many classic works.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.poetryfoundation.org/" target="_blank">Poetry Foundation</a></td>
+                            <td>Resource for poems, poets' biographies, and poetry-related articles.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.bl.uk/" target="_blank">The British Library</a></td>
+                            <td>Explore vast collections of books, manuscripts, and historical documents.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.goodreads.com/" target="_blank">Goodreads</a></td>
+                            <td>Discover and share books you love, track your reading, and connect with fellow readers.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="links-table-category">
+                <h3>Gardening & Botany</h3>
+                <table class="links-table">
+                    <thead>
+                        <tr>
+                            <th>Website</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="https://www.rhs.org.uk/" target="_blank">Royal Horticultural Society</a></td>
+                            <td>Leading gardening charity, providing gardening advice, inspiration, and resources.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.kew.org/" target="_blank">Royal Botanic Gardens, Kew</a></td>
+                            <td>A world-renowned botanical garden and research center.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.gardensillustrated.com/" target="_blank">Gardens Illustrated</a></td>
+                            <td>In-depth articles on garden design, plants, and garden history.</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.oldhousegardens.com/" target="_blank">Old House Gardens</a></td>
+                            <td>Specializing in heirloom flower bulbs, focusing on rare and antique varieties.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 IqueNewbie. All Rights Reserved.</p>
+        <p>Recommended Browser: Chrome, Firefox, Edge | Best viewed at 1920x1080 resolution</p>
+        <p>Last Updated: May 21, 2025</p>
+    </footer>
+<div id="yt-miniplayer">
+    <div id="yt-header">
+        🎵 Now Playing
+        <button id="yt-close">✖</button>
+    </div>
+    <iframe
+        id="yt-iframe"
+        width="300"
+        height="170"
+        src="https://www.youtube.com/embed/l3G_D2n_P_8?enablejsapi=1&autoplay=1&controls=0&loop=1&playlist=l3G_D2n_P_8"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+    ></iframe>
+    <div id="yt-controls">
+        <button id="yt-play-pause">▶️ Play</button>
+        <button id="yt-mute">🔊 Mute</button>
+        <input type="range" id="yt-volume-slider" min="0" max="100" value="50">
+    </div>
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+    const player = document.getElementById('yt-miniplayer');
+    const header = document.getElementById('yt-header');
+    const closeBtn = document.getElementById('yt-close');
+    const playPauseBtn = document.getElementById('yt-play-pause');
+    const muteBtn = document.getElementById('yt-mute');
+    const volumeSlider = document.getElementById('yt-volume-slider');
+    const ytIframe = document.getElementById('yt-iframe');
+
+    let isDragging = false, offsetX, offsetY;
+    let ytPlayer; // Will hold the YT.Player object
+
+    const PLAYER_STATE_KEY_YT = 'ytMiniPlayerState';
+
+    // --- Persistence (Local Storage) ---
+    function savePlayerStateYT() {
+        if (!ytPlayer) return; // Ensure player is initialized
+        const state = {
+            isPlaying: ytPlayer.getPlayerState() === YT.PlayerState.PLAYING,
+            isMuted: ytPlayer.isMuted(),
+            volume: ytPlayer.getVolume(),
+            isVisible: !player.classList.contains('hidden'),
+            left: player.style.left,
+            top: player.style.top,
+            right: player.style.right,
+            bottom: player.style.bottom
+        };
+        localStorage.setItem(PLAYER_STATE_KEY_YT, JSON.stringify(state));
+    }
+
+    function loadPlayerStateYT() {
+        const savedState = localStorage.getItem(PLAYER_STATE_KEY_YT);
+        if (savedState) {
+            const state = JSON.parse(savedState);
+
+            // Set position
+            if (state.left && state.top) {
+                player.style.left = state.left;
+                player.style.top = state.top;
+                player.style.right = 'auto'; // Clear right/bottom if left/top set
+                player.style.bottom = 'auto';
+            } else if (state.right && state.bottom) {
+                 player.style.right = state.right;
+                 player.style.bottom = state.bottom;
+                 player.style.left = 'auto';
+                 player.style.top = 'auto';
+            }
+
+            if (!state.isVisible) {
+                player.classList.add('hidden');
+            } else {
+                player.classList.remove('hidden');
+            }
+
+            // Volume and mute will be applied in onPlayerReady after API is ready
+            // Playback state is also handled there or in onPlayerStateChange
+        } else {
+            // Default initial position if no state is saved
+            player.style.bottom = '20px';
+            player.style.right = '20px';
+            player.classList.remove('hidden'); // Ensure visible by default
+        }
+    }
+
+    // --- Dragging Logic ---
+    header.addEventListener('mousedown', (e) => {
+        // Prevent dragging if clicking on the close button
+        if (e.target.closest('#yt-close') || e.target.closest('#yt-controls')) {
+            return;
+        }
+        isDragging = true;
+        header.classList.add('dragging'); // Add dragging class to header for cursor change
+        player.classList.add('dragging'); // Add dragging class to container for opacity
+        offsetX = e.clientX - player.getBoundingClientRect().left; // Use getBoundingClientRect for accurate position
+        offsetY = e.clientY - player.getBoundingClientRect().top;
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            header.classList.remove('dragging');
+            player.classList.remove('dragging');
+            savePlayerStateYT(); // Save position after drag ends
+        }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault(); // Prevent text selection etc.
+
+        // Constrain within viewport
+        let newLeft = e.clientX - offsetX;
+        let newTop = e.clientY - offsetY;
+
+        const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const playerWidth = player.offsetWidth;
+        const playerHeight = player.offsetHeight;
+
+        newLeft = Math.max(0, Math.min(newLeft, viewportWidth - playerWidth));
+        newTop = Math.max(0, Math.min(newTop, viewportHeight - playerHeight));
+
+        player.style.left = newLeft + 'px';
+        player.style.top = newTop + 'px';
+        // Clear right/bottom once dragged
+        player.style.right = 'auto';
+        player.style.bottom = 'auto';
+    });
+
+    // --- Close Button ---
+    closeBtn.addEventListener('click', () => {
+        if (ytPlayer) {
+            ytPlayer.pauseVideo(); // Pause video when closing
+        }
+        player.classList.add('hidden');
+        savePlayerStateYT(); // Save state as hidden
+    });
+
+    // --- YouTube API Loading and Initialization ---
+    // This function is called automatically by the YouTube IFrame Player API
+    function onYouTubeIframeAPIReady() {
+        // Check if iframe is actually rendered and available
+        if (!ytIframe) {
+            console.error("YouTube iframe element not found!");
+            return;
+        }
+
+        ytPlayer = new YT.Player('yt-iframe', {
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            },
+            playerVars: {
+                'autoplay': 1, // Attempt to autoplay
+                'controls': 0, // Hide YouTube's native controls
+                'loop': 1, // Loop the video
+                'playlist': 'l3G_D2n_P_8', // Crucial for looping a single video ID
+                'modestbranding': 1, // Reduces YouTube logo
+                'rel': 0 // Prevents related videos at the end
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        const savedState = localStorage.getItem(PLAYER_STATE_KEY_YT);
+        let state;
+        if (savedState) {
+            state = JSON.parse(savedState);
+        }
+
+        // Apply saved volume/mute or default
+        if (state && state.volume !== undefined) {
+            ytPlayer.setVolume(state.volume);
+            volumeSlider.value = state.volume;
+        } else {
+            ytPlayer.setVolume(50); // Default volume to 50%
+            volumeSlider.value = 50;
+        }
+
+        if (state && state.isMuted !== undefined) {
+            if (state.isMuted) {
+                ytPlayer.mute();
+                muteBtn.textContent = '🔇 Unmute';
+            } else {
+                ytPlayer.unMute();
+                muteBtn.textContent = '🔊 Mute';
+            }
+        } else {
+            ytPlayer.unMute(); // Default to unmuted
+            muteBtn.textContent = '🔊 Mute';
+        }
+
+        // Attempt to play based on saved state, but browser might block autoplay with sound
+        if (state && state.isPlaying) {
+            // Attempt to play. Browser might prevent if no user interaction.
+            event.target.playVideo().catch(e => console.log("YouTube autoplay blocked:", e));
+            playPauseBtn.textContent = '⏸️ Pause';
+        } else {
+            event.target.pauseVideo();
+            playPauseBtn.textContent = '▶️ Play';
+        }
+
+        savePlayerStateYT(); // Save the initial state applied
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+            playPauseBtn.textContent = '⏸️ Pause';
+        } else {
+            playPauseBtn.textContent = '▶️ Play';
+        }
+        savePlayerStateYT();
+    }
+
+    // --- Miniplayer Controls ---
+    playPauseBtn.addEventListener('click', () => {
+        if (!ytPlayer) return;
+        const playerState = ytPlayer.getPlayerState();
+        if (playerState === YT.PlayerState.PLAYING || playerState === YT.PlayerState.BUFFERING) {
+            ytPlayer.pauseVideo();
+        } else {
+            ytPlayer.playVideo().catch(e => console.log("YouTube play blocked:", e));
+        }
+    });
+
+    muteBtn.addEventListener('click', () => {
+        if (!ytPlayer) return;
+        if (ytPlayer.isMuted()) {
+            ytPlayer.unMute();
+            muteBtn.textContent = '🔊 Mute';
+        } else {
+            ytPlayer.mute();
+            muteBtn.textContent = '🔇 Unmute';
+        }
+    });
+
+    volumeSlider.addEventListener('input', () => {
+        if (!ytPlayer) return;
+        const volume = parseInt(volumeSlider.value);
+        ytPlayer.setVolume(volume);
+        if (volume > 0 && ytPlayer.isMuted()) {
+            ytPlayer.unMute(); // Unmute if volume is increased from 0 while muted
+            muteBtn.textContent = '🔊 Mute';
+        } else if (volume === 0 && !ytPlayer.isMuted()) {
+            ytPlayer.mute(); // Mute if volume is set to 0
+            muteBtn.textContent = '🔇 Unmute';
+        }
+    });
+
+    // Load initial player state on page load (position and visibility)
+    document.addEventListener('DOMContentLoaded', loadPlayerStateYT);
+
+    // No need to dynamically append YouTube API script if it's already a script tag in HTML
+    // You have src="https://www.youtube.com/iframe_api" directly in the HTML now, which is fine.
+    // If you were using the old code that dynamically appended, you'd keep that.
+</script>
+</body>
+</html>

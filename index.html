@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Personal Website - Home</title>
+
+    <style>
+        /* Basic Reset & Body Styling */
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333; /* A soft dark color for text */
+            background-color: #f8f8f8; /* Light background for contrast */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures footer is at bottom */
+        }
+
+        /* Dark Green Theme Color */
+        :root {
+            --dark-green: #1e382a;
+            --light-green: #6a8b5e; /* Complementary light green */
+            --muted-gold: #c7b08b; /* Muted gold/cream for accents */
+            --dusty-rose: #a7888b; /* Optional dusty rose accent */
+            --text-color: #333;
+            --white-text: #f0f0f0; /* For text on dark backgrounds */
+        }
+
+        /* Header Styling */
+        header {
+            background-color: var(--dark-green);
+            color: var(--white-text);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--light-green);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            letter-spacing: 2px;
+            font-weight: normal;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Navigation Styling */
+        nav {
+            background-color: var(--light-green);
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; /* For horizontal navigation */
+            justify-content: center;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white-text);
+            font-weight: bold;
+            padding: 8px 15px;
+            display: block;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 5px; /* Slightly rounded corners for buttons */
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active { /* 'active' class for the current page */
+            background-color: var(--muted-gold);
+            color: var(--dark-green);
+        }
+
+        /* Main Content Area */
+        main {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex-grow: 1; /* Allows main content to expand */
+        }
+
+        section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #fdfdfd;
+        }
+
+        section h2 {
+            color: var(--dark-green);
+            font-size: 2em;
+            border-bottom: 2px solid var(--light-green);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* Image Styling */
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .image-item {
+            flex: 1 1 calc(33% - 40px); /* Roughly 3 items per row on large screens */
+            min-width: 280px; /* Minimum width before wrapping */
+            text-align: center;
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden; /* Ensures image doesn't break border-radius */
+        }
+
+        .image-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px auto;
+            border-radius: 3px;
+            border: 1px solid #ccc; /* Subtle border for images */
+            transition: transform 0.3s ease;
+        }
+
+        .image-item img:hover {
+            transform: scale(1.03); /* Slight zoom on hover */
+        }
+
+        .image-item h3 {
+            color: var(--dark-green);
+            font-size: 1.2em;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .image-item p {
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        /* Table Styling (for page layout, if needed, or specific data) */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid var(--light-green);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--light-green);
+            color: var(--white-text);
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* zebra striping */
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: var(--dark-green);
+            color: var(--white-text);
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 2px solid var(--light-green);
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design (Basic) */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+
+            main {
+                margin: 10px auto;
+                padding: 15px;
+            }
+
+            .image-item {
+                flex: 1 1 100%; /* Stack images on smaller screens */
+            }
+	    .justify-text {
+    		text-align: justify;
+	}
+/* --- YouTube Miniplayer CSS --- */
+#yt-miniplayer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px; /* Adjust width as needed */
+    background: var(--dark-green); /* Use your theme color */
+    color: var(--white-text);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    z-index: 9999; /* Ensures it's on top of other content */
+    font-family: sans-serif;
+    cursor: move;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column;
+    overflow: hidden; /* Ensures rounded corners are respected */
+}
+
+#yt-header {
+    padding: 8px 15px; /* Adjust padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically align items */
+    background: var(--light-green); /* Use your theme color */
+    cursor: grab; /* Indicate draggable */
+    font-weight: bold;
+    font-size: 14px;
+    user-select: none; /* Prevent text selection during drag */
+}
+
+#yt-header.dragging {
+    cursor: grabbing;
+}
+
+#yt-close {
+    background: none;
+    color: var(--white-text);
+    border: none;
+    font-size: 18px; /* Slightly larger X */
+    cursor: pointer;
+    padding: 2px 5px; /* Padding for easier click */
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+#yt-close:hover {
+    background-color: rgba(255, 0, 0, 0.7); /* Red hover */
+}
+
+#yt-iframe {
+    width: 100%; /* Make iframe fill its container */
+    height: 180px; /* Adjust height for video */
+    display: block; /* Remove extra space below iframe */
+}
+
+#yt-controls {
+    padding: 10px 15px; /* Adjust padding */
+    display: flex;
+    justify-content: space-around; /* Distribute buttons */
+    align-items: center;
+    gap: 10px; /* Space between controls */
+    background: var(--dark-green);
+}
+
+#yt-controls button {
+    background: var(--muted-gold); /* Your theme color */
+    color: var(--dark-green); /* Text color for buttons */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap; /* Prevent text wrap on buttons */
+}
+
+#yt-controls button:hover {
+    background: var(--light-green);
+    color: var(--white-text);
+}
+
+#yt-controls #yt-volume-slider { /* New volume slider style */
+    width: 80px;
+    height: 4px;
+    background: #ccc;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+#yt-controls #yt-volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--muted-gold);
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+#yt-controls #yt-volume-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--muted-gold);
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+
+/* Hide player when not visible */
+#yt-miniplayer.hidden {
+    display: none;
+}
+
+
+/* Footer Styling */
+footer {
+    background-color: var(--dark-green);
+    color: var(--white-text);
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    border-top: 2px solid var(--light-green);
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    main {
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    #yt-miniplayer { /* Adjust for smaller screens */
+        width: 280px;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    #yt-iframe {
+        height: 157px; /* Maintain aspect ratio (16:9 for 280px width) */
+    }
+
+    #yt-controls button {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+}
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Personal Website</h1>
+        <p><i>A glimpse into my world of nature and vintage aesthetics</i></p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="hobbies.html">Hobbies</a></li>
+            <li><a href="interests.html">Interests</a></li>
+            <li><a href="mythoughts.html">My Thoughts</a></li>
+            <li><a href="links.html">Links</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Welcome to My Vintage Corner</h2>
+            <p class="justify-text">Assalamu'alaikum warrahmatullah hiwabarokatuh! Let us dive into my personal space where I share snippets of my life, passions, and contemplations. This website is a reflection of the things that made me, me.</p>
+            <p class="justify-text">From the serene beauty of a swan on a tranquil lake to the delicate flutter of a butterfly, nature has always been a profound source of inspiration for me. You'll find these elements woven throughout the pages, symbolizing the beauty and peace I seek.</p>
+        </section>
+
+        <section>
+            <h2>Featured Inspirations</h2>
+            <div class="image-container">
+                <div class="image-item">
+                    <img src="C:\Users\ASUS\OneDrive - moe-dl.edu.my\Documents\website\swan.jpg" alt="Swan on a tranquil lake">
+                    <h3>Tranquil Waters</h3>
+                    <p>The serene presence of swans reminds me of grace and peace.</p>
+                </div>
+                <div class="image-item">
+                    <img src="C:\Users\ASUS\OneDrive - moe-dl.edu.my\Documents\website\moon.jpg" alt="Full moon in a clear night sky">
+                    <h3>Lunar Glow</h3>
+                    <p>The full moon illuminates the path, a beacon of dreams and reflection.</p>
+                </div>
+                <div class="image-item">
+                    <img src="C:\Users\ASUS\OneDrive - moe-dl.edu.my\Documents\website\butterfly.jpg" alt="Colorful butterfly on a flower">
+                    <h3>Butterfly's Dance</h3>
+                    <p>Symbolizing transformation and the fleeting beauty of life.</p>
+                </div>
+                <div class="image-item">
+                    <img src="C:\Users\ASUS\OneDrive - moe-dl.edu.my\Documents\website\roses.jpg" alt="Close-up of vintage roses">
+                    <h3>Timeless Roses</h3>
+                    <p>Their classic beauty and fragrant charm capture the essence of vintage elegance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>My Guiding Philosophy</h2>
+            <p>Life, much like a carefully curated garden, blossoms with care, curiosity, and a touch of the extraordinary. I believe in finding beauty in the everyday and embracing creativity in all its forms. This website is my digital garden, where ideas bloom and memories are cherished.</p>
+            <p>Explore the navigation menu to discover more about my hobbies, delve into my interests, and read some of my thoughts. I hope you find something here that resonates with you.</p>
+        </section>
+
+        <section>
+            <h2>Website Sections at a Glance</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Section</th>
+                        <th>Content Focus</th>
+                        <th>Key Elements</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Home</td>
+                        <td>Introduction & Overview</td>
+                        <td>Welcome message, featured inspirations</td>
+                    </tr>
+                    <tr>
+                        <td>About Me</td>
+                        <td>Personal Background</td>
+                        <td>Bio, education, personal journey</td>
+                    </tr>
+                    <tr>
+                        <td>Hobbies</td>
+                        <td>Passions & Activities</td>
+                        <td>Detailed descriptions of my hobbies</td>
+                    </tr>
+                    <tr>
+                        <td>Interests</td>
+                        <td>What Captivates Me</td>
+                        <td>Books, music, art, topics of fascination</td>
+                    </tr>
+                    <tr>
+                        <td>My Thoughts</td>
+                        <td>Reflections & Writings</td>
+                        <td>Short essays, musings, opinions</td>
+                    </tr>
+                    <tr>
+                        <td>Links</td>
+                        <td>Useful & Favorite Links</td>
+                        <td>External resources, inspiration</td>
+                    </tr>
+                    <tr>
+                        <td>Contacts</td>
+                        <td>How to Reach Me</td>
+                        <td>Contact form, social links</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 IQueNewbie. All Rights Reserved.</p>
+        <p>Recommended Browser: Chrome, Firefox, Edge | Best viewed at 1920x1080 resolution</p>
+        <p>Last Updated: May 21, 2025</p>
+    </footer>
+<div id="yt-miniplayer">
+        <div id="yt-header">
+            🎵 Now Playing
+            <button id="yt-close">✖</button>
+        </div>
+        <iframe
+            id="yt-iframe"
+            width="300"
+            height="170"
+            src="https://www.youtube.com/embed/hlWiI4xVXKY?si=gNlT7GOKb8JkPAh0"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+        ></iframe>
+        <div id="yt-controls">
+            <button id="yt-play-pause">▶️ Play</button>
+            <button id="yt-mute">🔊 Mute</button>
+            <input type="range" id="yt-volume-slider" min="0" max="100" value="50">
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+        const player = document.getElementById('yt-miniplayer');
+        const header = document.getElementById('yt-header');
+        const closeBtn = document.getElementById('yt-close');
+        const playPauseBtn = document.getElementById('yt-play-pause');
+        const muteBtn = document.getElementById('yt-mute');
+        const volumeSlider = document.getElementById('yt-volume-slider');
+        const ytIframe = document.getElementById('yt-iframe'); // Get iframe itself
+
+        let isDragging = false, offsetX, offsetY;
+        let ytPlayer; // Will hold the YT.Player object
+
+        const PLAYER_STATE_KEY_YT = 'ytMiniPlayerState';
+
+        // --- Persistence (Local Storage) ---
+        function savePlayerStateYT() {
+            if (!ytPlayer) return; // Ensure player is initialized
+            const state = {
+                isPlaying: ytPlayer.getPlayerState() === YT.PlayerState.PLAYING,
+                isMuted: ytPlayer.isMuted(),
+                volume: ytPlayer.getVolume(),
+                isVisible: !player.classList.contains('hidden'),
+                left: player.style.left,
+                top: player.style.top,
+                right: player.style.right,
+                bottom: player.style.bottom
+            };
+            localStorage.setItem(PLAYER_STATE_KEY_YT, JSON.stringify(state));
+        }
+
+        function loadPlayerStateYT() {
+            const savedState = localStorage.getItem(PLAYER_STATE_KEY_YT);
+            if (savedState) {
+                const state = JSON.parse(savedState);
+
+                // Set position
+                if (state.left && state.top) {
+                    player.style.left = state.left;
+                    player.style.top = state.top;
+                    player.style.right = 'auto'; // Clear right/bottom if left/top set
+                    player.style.bottom = 'auto';
+                } else if (state.right && state.bottom) {
+                     player.style.right = state.right;
+                     player.style.bottom = state.bottom;
+                     player.style.left = 'auto';
+                     player.style.top = 'auto';
+                }
+
+
+                if (!state.isVisible) {
+                    player.classList.add('hidden');
+                } else {
+                    player.classList.remove('hidden');
+                }
+
+                // Volume and mute will be applied in onPlayerReady after API is ready
+                // Playback state is also handled there or in onPlayerStateChange
+            } else {
+                // Default initial position if no state is saved
+                player.style.bottom = '20px';
+                player.style.right = '20px';
+                player.classList.remove('hidden'); // Ensure visible by default
+            }
+        }
+
+        // --- Dragging Logic ---
+        header.addEventListener('mousedown', (e) => {
+            // Prevent dragging if clicking on the close button or controls
+            if (e.target.closest('#yt-close') || e.target.closest('#yt-controls')) {
+                return;
+            }
+            isDragging = true;
+            header.classList.add('dragging'); // Add dragging class to header for cursor change
+            player.classList.add('dragging'); // Add dragging class to container for opacity
+            offsetX = e.clientX - player.getBoundingClientRect().left; // Use getBoundingClientRect for accurate position
+            offsetY = e.clientY - player.getBoundingClientRect().top;
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                header.classList.remove('dragging');
+                player.classList.remove('dragging');
+                savePlayerStateYT(); // Save position after drag ends
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault(); // Prevent text selection etc.
+
+            // Constrain within viewport
+            let newLeft = e.clientX - offsetX;
+            let newTop = e.clientY - offsetY;
+
+            const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            const playerWidth = player.offsetWidth;
+            const playerHeight = player.offsetHeight;
+
+            newLeft = Math.max(0, Math.min(newLeft, viewportWidth - playerWidth));
+            newTop = Math.max(0, Math.min(newTop, viewportHeight - playerHeight));
+
+            player.style.left = newLeft + 'px';
+            player.style.top = newTop + 'px';
+            // Clear right/bottom once dragged
+            player.style.right = 'auto';
+            player.style.bottom = 'auto';
+        });
+
+        // --- Close Button ---
+        closeBtn.addEventListener('click', () => {
+            if (ytPlayer) {
+                ytPlayer.pauseVideo(); // Pause video when closing
+            }
+            player.classList.add('hidden');
+            savePlayerStateYT(); // Save state as hidden
+        });
+
+        // --- YouTube API Loading and Initialization ---
+        // This function is called automatically by the YouTube IFrame Player API
+        function onYouTubeIframeAPIReady() {
+            // Check if iframe is actually rendered and available
+            if (!ytIframe) {
+                console.error("YouTube iframe element not found!");
+                return;
+            }
+
+            ytPlayer = new YT.Player('yt-iframe', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                },
+                playerVars: {
+                    'autoplay': 1, // Attempt to autoplay
+                    'controls': 0, // Hide YouTube's native controls
+                    'loop': 1, // Loop the video
+                    'playlist': 'l3G_D2n_P_8', // Crucial for looping a single video ID
+                    'modestbranding': 1, // Reduces YouTube logo
+                    'rel': 0 // Prevents related videos at the end
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            const savedState = localStorage.getItem(PLAYER_STATE_KEY_YT);
+            let state;
+            if (savedState) {
+                state = JSON.parse(savedState);
+            }
+
+            // Apply saved volume/mute or default
+            if (state && state.volume !== undefined) {
+                ytPlayer.setVolume(state.volume);
+                volumeSlider.value = state.volume;
+            } else {
+                ytPlayer.setVolume(50); // Default volume to 50%
+                volumeSlider.value = 50;
+            }
+
+            if (state && state.isMuted !== undefined) {
+                if (state.isMuted) {
+                    ytPlayer.mute();
+                    muteBtn.textContent = '🔇 Unmute';
+                } else {
+                    ytPlayer.unMute();
+                    muteBtn.textContent = '🔊 Mute';
+                }
+            } else {
+                ytPlayer.unMute(); // Default to unmuted
+                muteBtn.textContent = '🔊 Mute';
+            }
+
+            // Attempt to play based on saved state, but browser might block autoplay with sound
+            if (state && state.isPlaying) {
+                // Attempt to play. Browser might prevent if no user interaction.
+                event.target.playVideo().catch(e => console.log("YouTube autoplay blocked:", e));
+                playPauseBtn.textContent = '⏸️ Pause';
+            } else {
+                event.target.pauseVideo();
+                playPauseBtn.textContent = '▶️ Play';
+            }
+
+            savePlayerStateYT(); // Save the initial state applied
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                playPauseBtn.textContent = '⏸️ Pause';
+            } else {
+                playPauseBtn.textContent = '▶️ Play';
+            }
+            savePlayerStateYT();
+        }
+
+        // --- Miniplayer Controls ---
+        playPauseBtn.addEventListener('click', () => {
+            if (!ytPlayer) return;
+            const playerState = ytPlayer.getPlayerState();
+            if (playerState === YT.PlayerState.PLAYING || playerState === YT.PlayerState.BUFFERING) {
+                ytPlayer.pauseVideo();
+            } else {
+                ytPlayer.playVideo().catch(e => console.log("YouTube play blocked:", e));
+            }
+        });
+
+        muteBtn.addEventListener('click', () => {
+            if (!ytPlayer) return;
+            if (ytPlayer.isMuted()) {
+                ytPlayer.unMute();
+                muteBtn.textContent = '🔊 Mute';
+            } else {
+                ytPlayer.mute();
+                muteBtn.textContent = '🔇 Unmute';
+            }
+        });
+
+        volumeSlider.addEventListener('input', () => {
+            if (!ytPlayer) return;
+            const volume = parseInt(volumeSlider.value);
+            ytPlayer.setVolume(volume);
+            if (volume > 0 && ytPlayer.isMuted()) {
+                ytPlayer.unMute(); // Unmute if volume is increased from 0 while muted
+                muteBtn.textContent = '🔊 Mute';
+            } else if (volume === 0 && !ytPlayer.isMuted()) {
+                ytPlayer.mute(); // Mute if volume is set to 0
+                muteBtn.textContent = '🔇 Unmute';
+            }
+        });
+
+        // Load initial player state on page load (position and visibility)
+        document.addEventListener('DOMContentLoaded', loadPlayerStateYT);
+
+        // No need to dynamically append YouTube API script if it's already a script tag in HTML
+        // You have src="https://www.youtube.com/iframe_api" directly in the HTML now, which is fine.
+        // If you were using the old code that dynamically appended, you'd keep that.
+    </script>
+</body>
+</html>
